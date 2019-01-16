@@ -7,6 +7,8 @@ public class Staff extends Person {
         super(name, phone, age);
         this.salary = salary;
     }
+
+
     public double getSalary(){
         return  salary;
     }

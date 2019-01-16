@@ -61,11 +61,17 @@ public class DepartmentApplication {
 However, this mistake below does show us How we could implement the code IF it was two-directional!  */
 //	
 		Course cs201 = new Course("cs201","programming",4, johnDoodle);
+		((Faculty) johnDoodle).addCourse(cs201);
 		Course cs360 = new Course("cs360","database",3, samHoward);
+		((Faculty) samHoward).addCourse(cs360);
 		Course cs404 = new Course("cs404","compiler",4, johnDoodle);
+		((Faculty) johnDoodle).addCourse(cs404);
 		Course cs240 = new Course("cs240","datastructure",2, johnDoodle);
+		((Faculty) johnDoodle).addCourse(cs240);
 		Course cs301 = new Course("cs301","Software engg",3, samHoward);
+		((Faculty) samHoward).addCourse(cs301);
 		Course cs450 = new Course("cs450","Advanced architecture",5,frankMoore);
+		((Faculty) frankMoore).addCourse(cs450);
 
         /*
          * The above course objects will go inside either
@@ -79,16 +85,34 @@ However, this mistake below does show us How we could implement the code IF it w
          *  the faculty class.  Something similar would be done
          *  for students.
          */
-
         /********************************************************/
 
 
-        double totsalary = 0;
+        ((Student) johnDoe).addCourse(cs201);
+        ((Student) johnDoe).addCourse(cs360);
+        ((Student) johnDoe).addCourse(cs404);
+        ((Student) johnDoe).addCourse(cs301);
 
+        ((Student) maryJones).addCourse(cs201);
+        ((Student) maryJones).addCourse(cs404);
+        ((Student) maryJones).addCourse(cs450);
+
+//        Mary Jones	CS201, CS404, CS450
+
+        ((Student) leeJohnson).addCourse(cs201);
+        ((Student) leeJohnson).addCourse(cs360);
+        ((Student) leeJohnson).addCourse(cs240);
+        ((Student) leeJohnson).addCourse(cs450);
+//        Lee Johnson	CS201, CS360, CS240, CS450
+
+        dept.convertStaffStudent((Staff)adamDavis);
+
+        double totsalary = 0;
         while (true) {
             putText("Enter first letter of ");
-            putText("getTotalSalary, showAllMembers, unitsPerFaculty or quit : ");
-            int choice = getChar();
+            putText("getTotalSalary, showAllMembers, unitsPerFaculty , s(T)udentsPerFaculty, convertStaffStudent or quit : ");
+            int choice ='t';
+//            int choice = getChar();
             switch (choice) {
                 case 'g':
                     totsalary = dept.getTotalSalary();
@@ -102,6 +126,9 @@ However, this mistake below does show us How we could implement the code IF it w
                     dept.unitsPerFaculty();
                     break;
                 case 'q':
+                    return;
+                case 't':
+                    dept.studentsPerFaculty();
                     return;
                 default:
                     putText("Invalid entry\n");
